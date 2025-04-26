@@ -53,8 +53,10 @@ conda activate pointnet
 After that, install pytorch 1.13.0 and other essential packages by running:
 ```
 conda install pytorch=1.13.0 torchvision pytorch-cuda=11.6 -c pytorch -c nvidia
+# macos : conda install pytorch=1.13.0 torchvision torchaudio -c pytorch
 conda install -c fvcore -c iopath -c conda-forge fvcore iopath
 conda install pytorch3d -c pytorch3d
+# macos - For macOS, you must build from source manually." : pip install 'git+https://github.com/facebookresearch/pytorch3d.git@stable' 
 ```
 
 Lastly, install remained necessary packages using `pip`:

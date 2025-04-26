@@ -57,7 +57,15 @@ def validation_step(
 
 def main(args):
     global device
-    device = "cpu" if args.gpu == -1 else f"cuda:{args.gpu}"
+    if args.gpu == -1:
+        device = "cpu"
+    else:
+        if torch.backends.mps.is_available():
+            device = "mps"  # Use Metal GPU on macOS
+        elif torch.cuda.is_available():
+            device = f"cuda:{args.gpu}"  # Use CUDA on Linux/Windows
+        else:
+            device = "cpu"  # fallback
 
     model = PointNetPartSeg()
     model = model.to(device)
